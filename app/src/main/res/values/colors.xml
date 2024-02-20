@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bg">#060839</color>
+    <color name='editTextBg'>#353B49</color>
+    <color name="editTextStroke">#6F7583</color>
+    <color name="loginButton">#2600FF</color>
+    <color name="singIn">#238AF8</color>
+</resources>

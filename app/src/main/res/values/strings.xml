@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">androidProject</string>
+    <string name="image">image</string>
+    <string name="login">로그인</string>
+    <string name="singIn">새 계정 만들기</string>
+    <string name="signUp">회원가입</string>
+    <string name="home">home</string>
+    <string name="search">search</string>
+    <string name="upload">upload</string>
+    <string name="shorts">shorts</string>
+    <string name="account">account</string>
+    <string name="share">공유</string>
+    <string name="tagperson">사람 태그</string>
+    <string name="newpost">새 게시물</string>
+    <string name="selecphoto">사진 선택</string>
+    <string name="postDescription">문구를 작성하세요...</string>
+</resources>
