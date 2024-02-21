@@ -11,8 +11,12 @@ import com.example.androidproject.navigaiton.AccountFragment
 import com.example.androidproject.navigaiton.HomeFragment
 import com.example.androidproject.navigaiton.SearchFragment
 import com.example.androidproject.navigaiton.ShortsFragment
+import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationBarView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
@@ -21,7 +25,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             R.id.action_home -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_container, HomeFragment()).commit()
-                Log.d("home","home")
                 return true
             }
 
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             }
 
             R.id.action_upload -> {
-                openGalleryLauncher.launch(Intent(this, UploadActivity::class.java))
+                uploadLauncher.launch(Intent(this, UploadActivity::class.java))
                 return true
             }
 
@@ -64,9 +67,13 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         if(savedInstanceState == null){
             binding.bottomNavigation.selectedItemId = R.id.action_home
         }
+        val toolbar = binding.mainTb
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.title = "Instagram"
     }
 
-    private val openGalleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+    private val uploadLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
         if(result.resultCode == RESULT_OK){
             binding.bottomNavigation.selectedItemId = R.id.action_home

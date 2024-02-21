@@ -14,4 +14,8 @@
     <string name="newpost">새 게시물</string>
     <string name="selecphoto">사진 선택</string>
     <string name="postDescription">문구를 작성하세요...</string>
+    <string name="imagebutton">imageButton</string>
+    <string name="like">좋아요 %d개</string>
+    <string name="content_description">content description....</string>
+    <string name="timePassed">%s분 전</string>
 </resources>

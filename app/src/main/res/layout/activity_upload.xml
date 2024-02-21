@@ -7,10 +7,16 @@
     android:orientation="vertical"
     android:background="@color/black"
     tools:context=".UploadActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/upload_tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleMarginStart="85dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     <ImageView
         android:id="@+id/addphoto_image"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
         tools:src="@drawable/ic_launcher_background"
         android:layout_width="250dp"
@@ -53,7 +59,9 @@
             android:layout_height="28dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="15dp"
-            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
             android:src="@drawable/tag"
             app:tint="@color/white"
             android:contentDescription="@string/image"/>

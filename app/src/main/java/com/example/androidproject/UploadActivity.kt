@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.androidproject.databinding.ActivityUploadBinding
+import com.example.androidproject.model.Content
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -27,7 +28,7 @@ class UploadActivity : AppCompatActivity() {
     var photoUri : Uri? = null
     var auth : FirebaseAuth? = null
     var firestore : FirebaseFirestore? = null
-    private val storageRef = Firebase.storage.reference
+    private var storageRef = Firebase.storage.reference
     private lateinit var binding: ActivityUploadBinding
     private val requestPermissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { results ->
         results.entries.forEach{
@@ -59,6 +60,9 @@ class UploadActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setSupportActionBar(binding.uploadTb)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "새 게시물"
         binding.uploadBtn.isEnabled = false
         binding.selectBtn.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
@@ -81,10 +85,6 @@ class UploadActivity : AppCompatActivity() {
             contentUpload(photoUri)
         }
     }
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed()
-        return true
-    }
     private fun requsetStorage(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_VISUAL_USER_SELECTED))
@@ -96,12 +96,30 @@ class UploadActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun contentUpload(imageUri: Uri?){
+    private fun contentUpload(imageUri : Uri?){
         var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         var imageFileName = "IMAGE_" + timestamp + "_.png"
         val imagesRef = storageRef.child("images").child(imageFileName)
         val uploadTask = imagesRef.putFile(imageUri!!)
         uploadTask.addOnSuccessListener {
+            var contentDTO = Content()
+
+            //Insert downloadUrl of image
+            contentDTO.imageUrl = imageUri.toString()
+
+            //Insert uid of user
+            contentDTO.uid = auth?.currentUser?.uid
+
+            //Insert userId
+            contentDTO.userId = auth?.currentUser?.email
+
+            //Insert explain of content
+            contentDTO.explain = binding.descriptionEt.text.toString()
+
+            //Insert timestamp
+            contentDTO.timestamp = System.currentTimeMillis()
+
+            firestore?.collection("images")?.document()?.set(contentDTO)
             setResult(Activity.RESULT_OK)
             finish()
         }.addOnFailureListener { exception ->
