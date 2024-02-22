@@ -63,6 +63,9 @@ class UploadActivity : AppCompatActivity() {
         setSupportActionBar(binding.uploadTb)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "새 게시물"
+        binding.uploadTb.setNavigationOnClickListener {
+            finish()
+        }
         binding.uploadBtn.isEnabled = false
         binding.selectBtn.setOnClickListener {
             if (ContextCompat.checkSelfPermission(

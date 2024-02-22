@@ -77,8 +77,7 @@ class HomeFragment : Fragment() {
             val likesText = getString(R.string.like, likesCount)
             p0.itemBinding.likesTv.text = likesText
             val time = formatTimeAgo(currentItem.timestamp!!)
-            val timeText = getString(R.string.timePassed, time)
-            p0.itemBinding.timepassedTv.text = timeText
+            p0.itemBinding.timepassedTv.text = time
 
             p0.itemBinding.likeIb.setOnClickListener {
                 favoriteEvent(p1)
