@@ -8,4 +8,5 @@
     <color name="loginButton">#2600FF</color>
     <color name="singIn">#238AF8</color>
     <color name="red">#FF1100</color>
+    <color name="commentBg">#313131</color>
 </resources>

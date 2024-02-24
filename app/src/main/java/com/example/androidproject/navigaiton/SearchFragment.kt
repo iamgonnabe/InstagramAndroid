@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -25,10 +26,18 @@ class SearchFragment : Fragment() {
         var view = LayoutInflater.from(activity).inflate(R.layout.fragment_search, container, false)
         firestore = FirebaseFirestore.getInstance()
         uid = FirebaseAuth.getInstance().currentUser?.uid
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+
         var recyclerView = view.findViewById<RecyclerView>(R.id.searchfragment_recyclerview)
         recyclerView.adapter = SearchViewRecyclerViewAdapter()
         recyclerView.addItemDecoration(GridSpacingItemDecoration(3, 0))
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
     }
     inner class GridSpacingItemDecoration(private val spanCount: Int, private val spacing : Int) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(

@@ -61,8 +61,8 @@
                     tools:src="@mipmap/ic_launcher" />
                 <ImageButton
                     android:id="@+id/like_ib"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/heart_outlined"
                     app:tint="@color/white"
@@ -75,10 +75,10 @@
                     android:contentDescription="@string/imagebutton" />
                 <ImageButton
                     android:id="@+id/comment_ib"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/comment"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     app:layout_constraintStart_toEndOf="@id/like_ib"
                     app:layout_constraintTop_toBottomOf="@id/post_iv"
@@ -89,10 +89,10 @@
                     android:contentDescription="@string/imagebutton"/>
                 <ImageButton
                     android:id="@+id/dm_ib"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/direct_message"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     app:layout_constraintStart_toEndOf="@id/comment_ib"
                     app:layout_constraintTop_toBottomOf="@id/post_iv"
@@ -111,8 +111,8 @@
                     android:layout_marginStart="70dp"/>
                 <ImageButton
                     android:id="@+id/bookmark_ib"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/bookmark"
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="10dp"

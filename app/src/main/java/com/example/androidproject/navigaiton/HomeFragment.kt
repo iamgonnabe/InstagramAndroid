@@ -1,10 +1,15 @@
 package com.example.androidproject.navigaiton
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +18,8 @@ import com.bumptech.glide.Glide
 import com.example.androidproject.R
 import com.example.androidproject.databinding.HomeDetailBinding
 import com.example.androidproject.model.Content
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -31,7 +38,6 @@ class HomeFragment : Fragment() {
         var recyclerView = view.findViewById<RecyclerView>(R.id.homefragment_recyclerview)
         recyclerView.adapter = HomeViewRecyclerViewAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
-
         return view
     }
     inner class HomeViewRecyclerViewAdapter : RecyclerView.Adapter<HomeViewRecyclerViewAdapter.CustomViewHolder>() {
@@ -91,6 +97,13 @@ class HomeFragment : Fragment() {
                 p0.itemBinding.likeIb.setImageResource(R.drawable.heart_outlined)
                 val notLikedColor = ContextCompat.getColor(p0.itemView.context, R.color.white)
                 p0.itemBinding.likeIb.setColorFilter(notLikedColor)
+            }
+
+            p0.itemBinding.commentIb.setOnClickListener {v->
+                val bottomSheetDialog = BottomSheetDialog(v.context)
+                val view = LayoutInflater.from(v.context).inflate(R.layout.fragment_comment, null)
+                bottomSheetDialog.setContentView(view)
+                bottomSheetDialog.show()
             }
 
         }
